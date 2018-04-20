@@ -39,6 +39,6 @@ function totalme(){
 	}
 	
 	
-	document.getElementById('tot').innerHTML="Total=$"+ totsum;
+	document.getElementById('tot').innerHTML="$"+ totsum;
 	return true;
 }
