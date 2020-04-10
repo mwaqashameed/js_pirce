@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
+<title>JS Price</title>
 <style>
 .main{width:500px; margin:0 auto;border: 1px solid #f39a9a;padding: 10px; border-radius:10px;
-position:absolute; left:35%; top:25%;
+position:absolute; left:35%; top:15%;
 }
 label{font-weight:bold}
 .main [type=text]{padding:5px; text-indent:5px; color:blue; font-weight:bold;}
@@ -17,26 +17,63 @@ label{font-weight:bold}
 
 <div class="main">
 <label>Oil</label>
-<input class="form-control" type="text" name="oil" id="oil" onBlur="this.value=converCurrencyAndTotal(this.value);" value="" placeholder="5.00"> <br>
+<input class="form-control jsprice" type="text" name="oil" id="oil" value="7" placeholder="5.00"> <br>
 <br>
 
 <label>Gas</label>
-<input class="form-control" type="text" name="gas" id="gas" onBlur="this.value=converCurrencyAndTotal(this.value);" value="" placeholder="5.00">
+<input class="form-control jsprice" type="text" name="gas" id="gas"  placeholder="5.00">
 <br>
 <br>
 
 <label>Electricity</label>
-<input class="form-control" type="text" name="electricity" id="electricity" onBlur="this.value=converCurrencyAndTotal(this.value);" value="" placeholder="5.00">  <br>
+<input class="form-control jsprice" type="text" name="electricity" id="electricity" value="" placeholder="5.00">  <br>
 <br><br>
 
 
 
 <label>Shipping</label><br>
-<input type="radio" name="via" id="via_post" value="5.00" onClick="converCurrencyAndTotal(this.value);"> POST <strong>$5.00</strong> <br>
-<input type="radio" name="via" id="via_dhl" value="60.00" onClick="converCurrencyAndTotal(this.value);"> DHL <strong>$60.00</strong>
+<input type="radio" name="via" id="via_post" value="5.00" class="jsprice"> POST <strong>$5.00</strong> <br>
+<input type="radio" name="via" id="via_dhl" value="60.00" class="jsprice"> DHL <strong>$60.00</strong>
 
-<div  style="background-color:#F00; padding:10px; font-size:24px; color:white; font-weight:bold;">Total= <span id="tot">$0.00</span></div>
+<br />
+<br />
+
+<label>Addition Package</label><br>
+<input type="checkbox" name="wire" id="wire" value="7.00" class="jsprice"> Wire <strong>$7.00</strong> <br>
+<input type="checkbox" name="socket" id="socket" value="11.00" class="jsprice"> Socket <strong>$11.00</strong>
+
+<br />
+<br />
+<label>Select Special Packging</label><br>
+
+<select name="pack" id="pack" class="form-control jsprice">
+	<option value="0">Basic (No Addional Charges)</option>
+	<option value="2">Small box ($2)</option>
+	<option value="5">Medium box ($5)</option>
+	<option value="10">Large box ($10)</option>
+</select>
+<br />
+<br />
+
+<div  style="background-color:#F00; padding:10px; font-size:24px; color:white; font-weight:bold;">Total= <span class="jsprice_tot" id="tot">$0.00</span></div>
 
 </div>
+
+
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="js_price_lib.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".jsprice").on('change',function (){
+			$(".jsprice").JsPrice({
+				floatDigit:2,
+				totalElement:$(".jsprice_tot")
+			});
+		});
+
+		
+	});
+	
+</script>
 </body>
 </html>
